@@ -232,7 +232,7 @@ button:hover {
   top: 10px;
   cursor: pointer;
   color: #868686;
-  z-index: 3;
+  /* z-index: 3; */
 }
 
 .card .card-delete:hover {
