@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLogin } from '../hooks/useLogin'
+import { Button } from '@mui/material'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -28,7 +29,7 @@ const Login = () => {
         value={password}
       />
 
-      <button disabled={isLoading}>Log in</button>
+      <Button variant='contained' onClick={handleSubmit}>Login</Button>
       {error && <div className='error'>{error}</div>}
     </form>
   )

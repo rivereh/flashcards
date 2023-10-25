@@ -12,7 +12,7 @@ const Home = () => {
   // const [workouts, setWorkouts] = useState(null)
   const { cards, dispatch } = useCardsContext()
   const { user } = useAuthContext()
-  const [showCardForm, setShowCardForm] = useState(true)
+  const [showCardForm, setShowCardForm] = useState(false)
 
   useEffect(() => {
     const fetchCards = async () => {
