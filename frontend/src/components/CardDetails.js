@@ -1,5 +1,7 @@
 import { useCardsContext } from '../hooks/useCardsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
+import LoopIcon from '@mui/icons-material/Loop'
+import ClearIcon from '@mui/icons-material/Clear';
 
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -17,8 +19,8 @@ const CardDetails = ({ card }) => {
     const response = await fetch('/api/cards/' + card._id, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${user.token}`
-      }
+        Authorization: `Bearer ${user.token}`,
+      },
     })
     const json = await response.json()
 
@@ -27,22 +29,27 @@ const CardDetails = ({ card }) => {
     }
   }
 
+  function flipCard(e) {
+    let cardElem = e.target.closest('.card')
+    cardElem.classList.toggle('flip')
+  }
+
+  function deleteCard() {}
+
   return (
-    <div className='card-details'>
-      <p>
-        {/* <strong>Load (kg): </strong> */}
-        {card.front}
-      </p>
-      <p>
-        {/* <strong>Reps: </strong> */}
-        {card.back}
-      </p>
-      {/* <p title={toDate(new Date(workout.createdAt))}>
-        {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
-      </p> */}
-      <span className='material-symbols-outlined' onClick={handleClick}>
-        delete
-      </span>
+    <div className='card-container' onClick={flipCard}>
+      <div className='card' sx={{ cursor: 'pointer' }}>
+        <div className='card-front'>
+          {card.front}
+          {/* <LoopIcon onClick={flipCard} className='card-flip' /> */}
+          <ClearIcon onClick={handleClick} className='card-delete' />
+        </div>
+        <div className='card-back'>
+          {card.back}
+          {/* <LoopIcon onClick={flipCard} className='card-flip' /> */}
+          <ClearIcon onClick={handleClick} className='card-delete' />
+        </div>
+      </div>
     </div>
   )
 }
